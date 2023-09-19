@@ -1,7 +1,50 @@
-<h1>{{ app_name }}</h1>
+{% extends 'base.html' %}
 
-<h5>Name:</h5>
-<p>{{ name }}</p> <!-- Change it to your name -->
+{% block content %}
 
-<h5>Class:</h5>
-<p>{{ class }}</p> <!-- Change it to your class -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }}</title>
+</head>
+<body>
+    <h3>Supermarket Product Management App</h3>
+    <ol>
+        <li>{{ name }}</li>
+        <li><a href="https://www.happyfresh.id/">Happy Fresh</a> Contoh link untuk supermarket</li>
+        <li>{{ class }}</li>
+    </ol>
+</body>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Date Added</th>
+    </tr>
+
+    {% comment %} Below is how to show the product data {% endcomment %}
+
+    {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.date_added }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_product' %}">
+    <button>
+        Add New Product
+    </button>
+</a>
+
+</html>
+
+{% endblock content %}

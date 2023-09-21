@@ -98,3 +98,35 @@ JSON's combination of simplicity, efficiency, cross-platform compatibility, and 
 
     5. XML by id 
         ![Alt text](image-5.png)
+
+[ASSIGNMENT 4 ]
+1.  What is UserCreationForm in Django? Explain its advantages and disadvantages.
+"UserCreationForm" is a built in form class provided by the Django authentication framework that simplifies the process of creating a new user account. Advantages: ease of use, integration with authentication, highly customizable, built in validation, and includes various security features. Whereas the disadvantages are limited flexibilities, frontend customization, and assumes default user model. 
+
+2. What is the difference between authentication and authorization in Django application? Why are both important?
+Authentication is about verifying the user's identity while authorization is about granting or denying access to the user. Furthermore, authentication typically involves the use of credentials, biometric, or other identity verfication methods; Authorization relies on permissions and access control lists (ACLs) to determine what actions a user is allowed to perform. Both are important for security purposes since together, they provide a security framework that ensures that only authorized and authenticated users can access certain parts of the application or perform specific actions.
+
+3. What are cookies in website? How does Django use cookies to manage user session data?
+
+Cookies are small pieces of data that a web server sends to a user's web browser and are stored locally on the user's machine. They commonly used to store informations about the user's interactions. When a user logs in to a website, a session cookie is created and stored on their device. This cookie contains a unique identifier that the server uses to associate subsequent requests from the same user with their session data on the server. This enables the server to maintain user-specific information, such as authentication status, shopping cart contents, or user preferences, throughout the user's visit to the site.
+
+4. Are cookies secure to use? Is there potential risk to be aware of?
+Although cookies are fundamental component of web development and are generally safe to use, like any other technology cookies comes with potential security risks. Few of them are: (1) storing sensitive information such as passwords or personally identifiable informations, directly in cookies is a significant security risks. (2) If session identifiers are not adequately protected, attackers may attempt to hijack a user's session by stealing their session cookie. (3) Excessive tracking and use of cookies for profiling user behavior can raise privacy concerns.
+
+5.  Explain how you implemented the checklist above step-by-step (not just following the tutorial).
+    1. Create register function in views.py 
+    2. Create HTML file of the register function
+    3. Add new path url of the register function to the urlpatterns 
+    4. Create login function 
+    5. Create login.html
+    6. Add new path url of the login function to the urlpatterns
+    7. Create logout function
+    8. modify the main.html template 
+    9. add path of the logout to the urls.py  
+    10. add the login required to the show main function 
+    11. modify the login user function so that it would required the user to sign in. 
+    12. add the last login entity to the models 
+    13. modify the logout user so that it would record the cookies 
+    14. modify the main.html to show the recorded last login session 
+    15. connect the product model to the user model 
+    

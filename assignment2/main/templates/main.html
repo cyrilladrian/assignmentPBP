@@ -4,55 +4,101 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>{{ app_name }}</title>
+  <meta charset="UTF-8">
+  <title>{{ app_name }}</title>
+
+  <!-- Navbar -->
+  <nav class="navbar bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+          <path
+            d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z" />
+        </svg>
+        InventLaris
+      </a>
+
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <p>Last login: {{ last_login }}</p>
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link active" href="{% url 'main:logout' %}">
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-outline-primary" type="submit">Logout</button>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </div>
 </head>
+
 <body>
-    <h3>Supermarket Product Management App</h3>
-    <ol>
-        <li>{{ name }}</li>
-        <li><a href="https://www.happyfresh.id/">Happy Fresh</a> Contoh link untuk supermarket</li>
-        <li>{{ class }}</li>
-    </ol>
-</body>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Date Added</th>
-    </tr>
+  <div class="table card text-center item-center justify-center">
+    <div class="card-header">
+      InventLaris Table
+    </div>
+    <div class="card-body">
+      <table class="table">
 
-    {% comment %} Below is how to show the product data {% endcomment %}
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Manipulate Data</th>
+          </tr>
+        </thead>
 
-    {% for product in products %}
-        <tr>
+
+        {% for product in products %}
+        <tbody>
+          <tr>
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
+            <td>{{ product.amount }}</td>
             <td>{{ product.description }}</td>
             <td>{{ product.date_added }}</td>
-        </tr>
-    {% endfor %}
-</table>
+            <td>
+              <div class="btn-group" aria-label="Basic mixed styles example">
+                <a href="{% url 'main:edit_product' product.pk %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'main:delete_product' product.pk %}" class="btn btn-primary">Delete</a>
+              </div>
 
-<br />
+            </td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
 
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Add New Product
-    </button>
-</a>
+      <a href="{% url 'main:create_product' %}">
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button class="btn btn-primary" type="button">Add New Product</button>
+        </div>
+      </a>
+
+
+    </div>
+  </div>
+
+
+</body>
+
+
+<br>
+
 
 </html>
 
-<h5>Last login session: {{ last_login }}</h5>
 
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
+
 
 {% endblock content %}

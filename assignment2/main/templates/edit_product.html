@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    .edit_product {
+
+        background-color: #ffffff;
+        /* Background color of the card */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Optional shadow */
+        position: relative;
+        top: 50%;
+        left: 35%;
+        transform: translate(-20%, 20%);
+
+    }
+</style>
+
+<div class="edit_product card" style="width: 50rem;">
+    <div class="card-header">
+        InventLaris
+    </div>
+    <div class="card-body">
+        <h5 class="card-title text-center">Edit Product</h5>
+
+
+        <form method="post" action="/edit-product/{{ids}}" class="card-body">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_name" class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" id="id_name" value="{{ form.instance.name }}">
+            </div>
+            <div class="mb-3">
+                <label for="id_price" class="form-label">Price</label>
+                <input type="number" class="form-control" name="price" id="id_price" value="{{ form.instance.price }}">
+            </div>
+            <div class="mb-3">
+                <label for="id_description" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="id_description"
+                    rows="3">{{ form.instance.description }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="id_amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" name="amount" id="id_amount"
+                    placeholder="Enter Product Amount" value="{{ form.instance.amount }}">
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-outline-primary" type="submit" value="edit product">Edit Product</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

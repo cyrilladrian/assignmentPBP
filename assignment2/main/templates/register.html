@@ -6,29 +6,80 @@
 
 {% block content %}  
 
-<div class = "login">
-    
-    <h1>Register</h1>  
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
+
+<style>
+    .register{
+
+        background-color: #ffffff; /* Background color of the card */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
+
+        position: relative;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+
+    }
+
+
+</style>
+
+
+<div class="register card text-center" style="width: 50rem;">
+    <div class="card-header">
+      InventLaris
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Register</h5>
+
+      <form method="POST" action="" class="card-body row g-3" value="">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" required class="form-control"  placeholder="Enter Username">
+            </div>
+            <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password1" required class="form-control"  placeholder="Enter Password">
+            </div>
+            <div class="col-12">
+                <label for="password" class="form-label">Confirm Password</label>
+                <input type="password" name="password2" required class="form-control"  placeholder="Re-Enter Password">
+            </div>
+            
+            <br>
+            <button type="submit" class="btn btn-outline-primary" value='Register'>Sign Up </button>
+
+            {% if messages %}  
+            <ul>   
+                {% for message in messages %}  
+                    <li>{{ message }}</li>  
+                    {% endfor %}  
+            </ul>   
+            {% endif %}
+
+            {% if form.errors.username %}
+            <ul>
+                <li class="alert alert-danger" role="alert">{{ form.errors.username }}</li>
+            </ul>
+            {% endif %}
+            {% if form.errors.password1 %}
+            <ul>
+                <li class="alert alert-danger" role="alert">{{ form.errors.password1 }}</li>
+            </ul>
+            {% endif %}
+            {% if form.errors.password2 %}
+            <ul>
+                <li class="alert alert-danger" role="alert">{{ form.errors.password2 }}</li>
+            </ul>
+        {% endif %}
         </form>
-
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
-
-</div>  
+   
+</div> 
 
 {% endblock content %}
+
+
+
+<!-- username: halo
+pass: cyrilladrian -->

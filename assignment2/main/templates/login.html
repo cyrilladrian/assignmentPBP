@@ -1,16 +1,35 @@
 {% extends 'base.html' %}
 
-{% block meta %}
-    <title>Login</title>
-{% endblock meta %}
+
 
 {% block content %}
 
-<div class = "login">
+<style>
+    .login{
 
-    <h1>Login</h1>
+        background-color: #ffffff; /* Background color of the card */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
 
-    <form method="POST" action="">
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+
+    }
+
+
+</style>
+
+
+<div class="login card text-center" style="width: 20rem;">
+    <div class="card-header">
+      InventLaris
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Login</h5>
+      <p class="card-text">Don't have an account? <a href="{% url 'main:register' %}">Register Now</a></p>
+
+      <form method="POST" action="" class="card-body">
         {% csrf_token %}
         <table>
             <tr>
@@ -23,23 +42,20 @@
                 <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
             </tr>
 
+
+
+            {% if messages %}
             <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
             </tr>
+            {% endif %}   
         </table>
+        <br>
+        <button type="submit" class="btn btn-outline-primary" value='login'>Login</button>
     </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-
-</div>
+    </div>
+  </div>   
 
 {% endblock content %}

@@ -633,3 +633,5 @@ the trend was moving away from jQuery for many modern web development projects. 
 9. Implement the add product function using ajax 
 10. set an on click method that matches the id of the add product function in the modal button 
 
+link deployment:
+http://cyrill-adrian-tugas.pbp.cs.ui.ac.id/

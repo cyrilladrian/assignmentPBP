@@ -47,6 +47,11 @@
                 <input type="number" class="form-control" name="amount" id="id_amount"
                     placeholder="Enter Product Amount" value="{{ form.instance.amount }}">
             </div>
+            <div class="mb-3">
+                <label for="id_amount" class="form-label">Amount</label>
+                <input type="radio" class="form-control" name="is_discount" id="id_discount"
+                 value="{{ form.instance.is_discount }}">
+            </div>
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button class="btn btn-outline-primary" type="submit" value="edit product">Edit Product</button>
             </div>

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ["name", "price", "description", "amount"]
+        fields = ["name", "price", "description", "amount", "is_discount"]
 
 # class CustomUserCreationForm(UserCreationForm):
 #     username = forms.CharField(label='username')

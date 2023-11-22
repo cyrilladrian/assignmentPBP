@@ -21,7 +21,7 @@
           <path
             d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z" />
         </svg>
-        InventLaris
+        <h4 style="font-family: 'Dela Gothic One';font-size: 22px;">InventLaris</h4>
       </a>
 
       <ul class="nav justify-content-end">
@@ -149,9 +149,17 @@
     return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
   }
 
+  async function getdiscount() {
+    return fetch("{% url 'main:get_discount_json' %}").then((res) => res.json())
+  }
+  async function getNotdiscount() {
+    return fetch("{% url 'main:get_notdiscount_json' %}").then((res) => res.json())
+  }
+
   async function refreshProducts() {
     document.getElementById("product_table").innerHTML = ""
-    const products = await getProducts()
+    const discount_products = await getdiscount()
+    const notdiscount_products = await getNotdiscount()
     let htmlString = `<tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>            
@@ -162,7 +170,29 @@
           </tr>`
           
 
-    products.forEach((item) => {
+    discount_products.forEach((item) => {
+      htmlString += `\n<tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.price}</td>
+            <td>${item.fields.description}</td>
+            <td>${item.fields.amount}              
+              <div class="btn-group" aria-label="Basic mixed styles example">
+                <a href="/increment/${item.pk}" class="btn btn-primary btn-sm">+</a>
+                <a href="/decrement/${item.pk}" class="btn btn-primary btn-sm">-</a>
+              </div>
+            </td>
+            <td>${item.fields.date_added}</td>
+            <td>
+              <div class="btn-group" aria-label="Basic mixed styles example">
+                <a href="/edit-product/${item.pk}" class="btn btn-primary">Edit</a>
+                <a href="/delete/${item.pk}" class="btn btn-primary">Delete</a>
+              </div>
+
+            </td>
+        </tr>`
+    })
+
+    notdiscount_products.forEach((item) => {
       htmlString += `\n<tr>
             <td>${item.fields.name}</td>
             <td>${item.fields.price}</td>
@@ -201,6 +231,11 @@
   }
 
   document.getElementById("button_add").onclick = addProduct
+
+  function increment(){
+    let product = getProducts()
+    
+  }
 
 </script>
 
